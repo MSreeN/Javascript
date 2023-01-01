@@ -170,4 +170,4 @@ sample(1, 2, 4);
 let a = 5;
 let b = a ?? 10;
 // console.log(b);
-console.log("" || undefined || 0 || null);
+console.log("" || undefined || 0 || false);
