@@ -6,6 +6,7 @@ const flights =
 
 // Data needed for first part of the section
 const restaurant = {
+  days : ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
@@ -26,7 +27,7 @@ const restaurant = {
       close: 24,
     },
   },
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(`pizza with ingredients ${mainIngredient} and ${otherIngredients}
  is ready.`);
   },
@@ -170,4 +171,27 @@ sample(1, 2, 4);
 let a = 5;
 let b = a ?? 10;
 // console.log(b);
-console.log("" || undefined || 5 || false);
+// console.log("" || undefined || 5 || false);
+
+
+//////////////////////// for of loop
+
+const fullMenu = [...restaurant.mainMenu, ...restaurant.starterMenu]
+for (const i of fullMenu) {
+  // console.log(i);
+}
+
+// console.log([...fullMenu.entries()]);
+// console.log(restaurant);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+for (const ele of days) {
+  // console.log(ele);
+  let aval = restaurant.openingHours?.[ele]?.open ?? 'Closed'
+  // console.log(`on ${ele} we open at ${aval}`);
+}
+
+const arrr= [{
+  a:10
+}]
+console.log(arrr[0]?.a ?? "ele doesnot exist");
