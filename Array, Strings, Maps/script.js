@@ -6,7 +6,7 @@ const flights =
 
 // Data needed for first part of the section
 const restaurant = {
-  days : ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
+  days: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
@@ -173,10 +173,9 @@ let b = a ?? 10;
 // console.log(b);
 // console.log("" || undefined || 5 || false);
 
-
 //////////////////////// for of loop
 
-const fullMenu = [...restaurant.mainMenu, ...restaurant.starterMenu]
+const fullMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
 for (const i of fullMenu) {
   // console.log(i);
 }
@@ -184,14 +183,111 @@ for (const i of fullMenu) {
 // console.log([...fullMenu.entries()]);
 // console.log(restaurant);
 
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 for (const ele of days) {
   // console.log(ele);
-  let aval = restaurant.openingHours?.[ele]?.open ?? 'Closed'
+  let aval = restaurant.openingHours?.[ele]?.open ?? "Closed";
   // console.log(`on ${ele} we open at ${aval}`);
 }
 
-const arrr= [{
-  a:10
-}]
-console.log(arrr[0]?.a ?? "ele doesnot exist");
+const arrr = [
+  {
+    a: 10,
+  },
+];
+// console.log(arrr[0]?.a ?? "ele doesnot exist");
+
+for (const [days, timings] of Object.entries(restaurant.openingHours)) {
+  // console.log(`we are open on ${days} from ${timings.open} to ${timings.close}`);
+}
+
+for (const i of Object.values(restaurant.openingHours)) {
+  // console.log(i );
+}
+
+const val = Object.keys(restaurant.openingHours);
+// console.log(`we are open on ${val.length} days: ${[...val]}`);
+
+//////////////////////////sets
+
+const orderSet = new Set(["pasta", "pizza", "Risotto", "pasta", "pizza"]);
+// console.log(orderSet);
+// let sam = orderSet;
+// console.log(orderSet[0]);
+orderSet.add("magi");
+// console.log(orderSet);
+// console.log(orderSet.has("Magi"));
+orderSet.delete("magi");
+orderSet.clear();
+// console.log("size of set is",orderSet.size);
+// console.log(orderSet.size);
+
+////////Removing duplicates in array using set
+///removing duplicates in array
+let dup = ["a", "b", "c", "a"];
+// console.log("array", dup);
+const dupSet = [...new Set([...dup])];
+// console.log("set", dupSet);
+
+//////counting unique ele in array
+// console.log(new Set(dup).size);
+
+///////counting different letters in a string
+
+let string = "sreerds";
+// console.log(new Set(string).size );
+
+////////////Maps
+
+const rest = new Map();
+rest.set("name", "Plaza pizza").set(1, "hyd").set(2, "bza")
+.set('categories', restaurant.categories)
+.set('open',11)
+.set('close', 23)
+.set(true,"We are open")
+.set(false, "We are closed")
+
+// console.log(rest);
+
+const curTime = 24;
+// console.log(rest.get(curTime> rest.get('open')?true:false));
+// rest.set(document.querySelector('h1'),"Selector")
+// console.log(rest);
+const question = new Map([
+  ['question', "What is the best prog lang?"],
+  [1, "C"],
+  [2, "Java"],
+  [3,"Javascript"],
+  ["correct", 3],
+  [true, "Correct"],
+  [false, "Try again"]
+])
+// console.log(question);
+////////////////iteration of maps
+// console.log(question.get('question'));
+// for (const [key, value] of question.entries()) {
+//   if(typeof key === 'number') console.log(`Option : ${key}. ${value}`);
+// }
+
+// const userAns = Number(prompt("What is you answer(Enter option)"))
+// console.log(question.get(userAns === question.get("correct")));
+// // // console.log();
+
+// console.log(restaurant, question);
+// console.log(...question);
+const [aa,,,bb] = [...question]
+// console.log(aa, bb);
+
+// console.log(question.entries());
+// console.log(question.keys());
+// console.log(question.values());
+
+// for (const element of question.values()) {
+//   console.log(element);
+// }
+
+const arrrr = [...question.entries()]
+// console.log(arrrr);
+
+
+////////////Working with strings
