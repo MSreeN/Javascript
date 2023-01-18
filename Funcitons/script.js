@@ -95,11 +95,49 @@ const euroWings = {
 const book = lufthansa.book;
 //we are calling call method and call will call the 
 //book function with this keyword set to the object
-book.call(lufthansa, 234, "sree")
-book.call(euroWings,234, "sree")
-console.log(lufthansa.bookings);
-console.log(euroWings.bookings);
+// book.call(lufthansa, 234, "sree")
+// book.call(euroWings,234, "sree")
+// console.log(lufthansa.bookings);
+// console.log(euroWings.bookings);
 
 //////////apply method
-book.apply(lufthansa,['mah', "mah"])
+// book.apply(lufthansa,['mah', "mah"])
 // console.log(lufthansa.bookings);
+
+
+////////////////Bind Method
+const bookEW = book.bind(euroWings);
+bookEW(1234, "sree")
+
+
+///bind with event listener
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function(){
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+}
+
+const buyPlane = document.querySelector('.buy');
+const buyPlaneFun = lufthansa.buyPlane.bind(lufthansa);
+// const buyPlaneFunBind = buyPlaneFun.bind(lufthansa)
+buyPlane.addEventListener('click', buyPlaneFun)
+
+function sample(arg1, arg2,arg3){
+  console.log(arg1, arg2,arg3);
+}
+
+const stoneSample = sample.bind(null, "from bind","from bind2");
+// stoneSample("from args")
+
+
+/////////inner function
+function addTax(rate){
+  return function(value){
+    return value + value * rate;
+  };
+}
+
+const inner = addTax(0.23);
+console.log(inner(100));
