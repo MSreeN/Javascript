@@ -215,4 +215,14 @@ document.querySelector(".poll").addEventListener("click", registerAnswer);
 // data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll
 // object! So what should the this keyword look like in this situation?
 
-poll.displayResults.call({answers:[5, 2, 3]})
+// poll.displayResults.call({answers:[5, 2, 3]})
+
+
+(function(){
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function(){
+    header.style.color = "blue";
+  })
+})()
+
