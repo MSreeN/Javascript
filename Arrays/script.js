@@ -90,6 +90,13 @@ arr = ['a', 'b', 'c','d', 'e']
 
 const arr2 = ['j', 'i', 'h', 'g', 'f'];
 const newArr = arr2.reverse();
-console.log(newArr);
-console.log(arr2);
-console.log(arr2.concat([...arr]))
+// console.log(newArr);
+// console.log(arr2);
+// console.log(arr2.concat([...arr]))
+
+//////////////////at ///////////////
+const arra = [23, 11, 64];
+console.log(arra.at(0));
+console.log(arra.at());
+console.log(arra.at(-1));
+console.log("strr".at(-1));
