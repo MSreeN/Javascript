@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 
 //////////////////////slice///////////////////////////
 let arr = ['a', 'b', 'c','d', 'e']
@@ -94,9 +94,22 @@ const newArr = arr2.reverse();
 // console.log(arr2);
 // console.log(arr2.concat([...arr]))
 
-//////////////////at ///////////////
+////////////////at //////////////////////////////////
 const arra = [23, 11, 64];
-console.log(arra.at(0));
-console.log(arra.at());
-console.log(arra.at(-1));
-console.log("strr".at(-1));
+// console.log(arra.at(0));
+// console.log(arra.at());
+// console.log(arra.at(-1));
+// console.log("strr".at(-1));
+
+///////////////////forEach///////////////////////
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+movements.forEach(function(movement){
+  if(movement>0) console.log(`${movement} credited`);
+  else console.log(`${Math.abs(movement)} debited`);
+})
+console.log("==============");
+movements.forEach(function(array,value,index){
+  console.log(value);
+})
