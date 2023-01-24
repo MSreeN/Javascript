@@ -191,25 +191,23 @@ const poll = {
     this.displayResults();
   },
   // 3. Create a method 'displayResults' which displays the poll results. The
-// method takes a string as an input (called 'type'), which can be either 'string'
-// or 'array'. If type is 'array', simply display the results array as it is, using
-// console.log(). This should be the default option. If type is 'string', display a
-// string like "Poll results are 13, 2, 4, 1".
-displayResults(type = "array"){
-  if(type === "array"){
-    console.log(this.answers);
-  }else if(type === "string"){
-    console.log(`Poll results are ${this.answers.join(", ")}`);
-  }
-}
+  // method takes a string as an input (called 'type'), which can be either 'string'
+  // or 'array'. If type is 'array', simply display the results array as it is, using
+  // console.log(). This should be the default option. If type is 'string', display a
+  // string like "Poll results are 13, 2, 4, 1".
+  displayResults(type = "array") {
+    if (type === "array") {
+      console.log(this.answers);
+    } else if (type === "string") {
+      console.log(`Poll results are ${this.answers.join(", ")}`);
+    }
+  },
 };
 // 2. Call this method whenever the user clicks the "Answer poll" button.
 const registerAnswer = poll.registerNewAnswer.bind(poll);
-document.querySelector(".poll").addEventListener("click", registerAnswer);
+// document.querySelector(".poll").addEventListener("click", registerAnswer);
 // 4. Run the 'displayResults' method at the end of each
 // 'registerNewAnswer' method call.
-
-
 
 // 5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test
 // data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll
@@ -217,12 +215,40 @@ document.querySelector(".poll").addEventListener("click", registerAnswer);
 
 // poll.displayResults.call({answers:[5, 2, 3]})
 
+// (function(){
+//   const header = document.querySelector('h1');
+//   header.style.color = 'red';
+//   document.querySelector('body').addEventListener('click', function(){
+//     header.style.color = "blue";
+//   })
+// })()
 
-(function(){
-  const header = document.querySelector('h1');
-  header.style.color = 'red';
-  document.querySelector('body').addEventListener('click', function(){
-    header.style.color = "blue";
+///////////////Arrays
+// Create a function 'checkDogs', which accepts 2 arrays of dog's ages
+// ('dogsJulia' and 'dogsKate'), and does the following things:
+// 1. Julia found out that the owners of the first and the last two dogs actually have
+// cats, not dogs! So create a shallow copy of Julia's array, and remove the cat
+// ages from that copied array (because it's a bad practice to mutate function
+// parameters)
+// 2. Create an array with both Julia's (corrected) and Kate's data
+// 3. For each remaining dog, log to the console whether it's an adult ("Dog number 1
+// is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy
+// 🐶")
+// 4. Run the function for both test datasets
+// Test data:
+// § Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+// § Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+// Hints: Use tools from all lectures in this section so far 😉
+
+// GOOD LUCK 😀
+const dogsJulia = [3, 5, 2, 12, 7]
+function checkDogs(dogsJulia, dogsKate) {
+  const juliaShallow = dogsJulia.slice();
+  juliaShallow.splice(0,1);
+  juliaShallow.splice(-2,2);
+  const dogs = juliaShallow.concat(dogsKate)
+  dogs.forEach(function(value, index){
+    console.log(`Dog number ${index+1} is an ${value<3 ?'puppy': 'adult'} and is ${value} years old`);
   })
-})()
-
+}
+checkDogs(dogsJulia, [4, 1, 15, 8, 3]);
