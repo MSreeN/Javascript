@@ -77,6 +77,13 @@ displayMovements(account1.movements);
 
 const user = "Steven Thomas Williams";
 
+
+const calcDisplayBalance = function(movements){
+  const balance = movements.reduce((acc, cVal) => acc+=cVal,0);
+  labelBalance.textContent = `Rs.${balance}`;
+}
+calcDisplayBalance(account1.movements)
+
 function createUserName(accs) {
   accs
     .forEach(function(acc) {
@@ -87,8 +94,9 @@ function createUserName(accs) {
     })
 }
 
-// createUserName(accounts);
-console.log(accounts);
+createUserName(accounts);
+
+// console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -111,7 +119,14 @@ const movementsUsd = movements.map(function (val, ind) {
 const deposits = movements.filter(function(mov){
   return mov>0
 })
-console.log(deposits);
+// console.log(deposits);
 
 const withdrawals = movements.filter(amt => amt < 0)
-console.log(withdrawals);
+// console.log(withdrawals);
+console.log(movements);
+const balance = movements.reduce(function(pVal, cVal, ind){
+  let maxVal = pVal > cVal? pVal: cVal;
+  return maxVal;
+},movements[0])
+
+console.log(balance);
