@@ -83,6 +83,24 @@ const calcDisplayBalance = function(movements){
   labelBalance.textContent = `Rs.${balance}`;
 }
 calcDisplayBalance(account1.movements)
+function calcDisplaySummary(movements){
+  const incomes = movements.filter(mov => mov>0).reduce((acc, cVal) => acc+cVal,0)
+  labelSumIn.textContent = `Rs.${incomes}`
+  const outgoing = movements.filter(mov => mov<0).reduce((acc, cVal) => acc+cVal,0)
+  // console.log(outgoing);
+  
+  labelSumOut.textContent = `Rs.${Math.abs(outgoing)}`
+  //1.2% for every deposit
+  const interest  = movements.filter(mov => mov>0).reduce((acc, cVal) => {
+    // console.log(cVal);
+    let cValInterest =(cVal* 1.2)/100;
+    // console.log("interest of above ",cValInterest);
+    if(cValInterest>=1) return acc+cValInterest;
+    else return acc+0;
+  },0)
+  labelSumInterest.textContent = `Rs.${interest}`
+}
+calcDisplaySummary(account1.movements)
 
 function createUserName(accs) {
   accs
@@ -123,10 +141,12 @@ const deposits = movements.filter(function(mov){
 
 const withdrawals = movements.filter(amt => amt < 0)
 // console.log(withdrawals);
-console.log(movements);
+// console.log(movements);
 const balance = movements.reduce(function(pVal, cVal, ind){
   let maxVal = pVal > cVal? pVal: cVal;
   return maxVal;
 },movements[0])
 
-console.log(balance);
+// console.log(balance);
+//chaining methods to convert euros to usd
+const totalDepositsInUsd = movements.filter(mov => mov>0).map(mov => mov * EuroToUsd).reduce((acc,cVal) => acc+cVal ,0)
