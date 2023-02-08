@@ -164,9 +164,7 @@ btnTransfer.addEventListener("click", function (e) {
   const receiverAcc = accounts.find(
     (acc) => acc.username === inputTransferTo.value
   );
-  inputTransferAmount.value = "";
-  inputTransferTo.value = "";
-  inputTransferAmount.blur();
+
   // console.log(receiverAcc);
   // console.log(receiverAcc.owner, " received amount");
   if (
@@ -183,7 +181,23 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
-
+// Closing account functionality
+btnClose.addEventListener('click', function(e){
+  e.preventDefault();
+  const closeUserName = inputCloseUsername.value;
+  const closeUserPin = Number(inputClosePin.value);
+  // console.log(closeUserName,closeUserPin);
+  if(closeUserName === currentAccount.username && closeUserPin === currentAccount.pin){
+    const userIndex = accounts.findIndex(acc => acc.username === closeUserName);
+    console.log(userIndex);
+    accounts.splice(userIndex,1);
+    console.log(accounts);
+    containerApp.style.opacity = "0";
+  }
+  inputClosePin.value = "";
+  inputCloseUsername.value = "";
+  inputClosePin.blur();
+})
 //Getting username and pin
 
 // console.log(accounts);
