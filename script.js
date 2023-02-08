@@ -61,12 +61,23 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+function updateUI(acc) {
+  //Display movements
+  displayMovements(acc.movements);
+  //Display balance
+  calcDisplayBalance(acc);
+  //Display summary
+  calcDisplaySummary(acc);
+}
+
 function displayMovements(movements) {
   containerMovements.innerHTML = "";
   movements.forEach(function (movement, index) {
     const type = movement > 0 ? "deposit" : "withdrawal";
     const html = `<div class="movements__row">
-    <div class="movements__type movements__type--${type}">${index + 1} ${type}</div>
+    <div class="movements__type movements__type--${type}">${
+      index + 1
+    } ${type}</div>
     <div class="movements__value">${movement}</div>
   </div>`;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -77,14 +88,14 @@ displayMovements(account1.movements);
 
 const user = "Steven Thomas Williams";
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, cVal) => (acc += cVal), 0);
-  labelBalance.textContent = `Rs.${balance}`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, cVal) => (acc += cVal), 0);
+  labelBalance.textContent = `Rs.${acc.balance}`;
 };
 //Hard coded argument function call
 // calcDisplayBalance(account1.movements);
 function calcDisplaySummary(account) {
-  const incomes =account.movements
+  const incomes = account.movements
     .filter((mov) => mov > 0)
     .reduce((acc, cVal) => acc + cVal, 0);
   labelSumIn.textContent = `Rs.${incomes}`;
@@ -128,26 +139,50 @@ btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
   // console.log("clicked");
   currentAccount = accounts.find(
-    (acc) => acc.username === inputLoginUsername.value
+    (acc) => acc.username === inputLoginUsername.value.trim()
   );
-  console.log(currentAccount);
+
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log(`${currentAccount.owner} logged in!`);
     //Display ui and welcome message
-    labelWelcome.textContent  = `Welcome back, ${currentAccount.owner.split(" ")[0]}`;
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(" ")[0]
+    }`;
     containerApp.style.opacity = "100";
-    //Display movements
-    displayMovements(currentAccount.movements)
-    //Display balance
-    calcDisplayBalance(currentAccount.movements)
-    //Display summary
-    calcDisplaySummary(currentAccount)
+    updateUI(currentAccount);
     //clear input fields
     inputLoginPin.value = "";
     inputLoginUsername.value = "";
-    //Makes the field to loose focus 
+    //Makes the field to loose focus
     inputLoginPin.blur();
   }
 });
+//transferring money functionality
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    (acc) => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = "";
+  inputTransferTo.value = "";
+  inputTransferAmount.blur();
+  // console.log(receiverAcc);
+  // console.log(receiverAcc.owner, " received amount");
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    amount <= currentAccount.balance &&
+    receiverAcc?.username != currentAccount.username
+  ) {
+    console.log(`Transferred ${amount} to ${receiverAcc.owner}`);
+    //doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    updateUI(currentAccount);
+  }
+});
+
 
 //Getting username and pin
 
