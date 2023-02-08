@@ -180,6 +180,18 @@ btnTransfer.addEventListener("click", function (e) {
     updateUI(currentAccount);
   }
 });
+//Loan functionality;
+btnLoan.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  // console.log(amount);
+  // console.log((10/100)*amount);
+  if(amount >0 && currentAccount.movements.some(mov => mov >= 0.1* amount)){
+    console.log("loan granted");
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+})
 
 // Closing account functionality
 btnClose.addEventListener('click', function(e){
@@ -254,3 +266,7 @@ const totalDepositsInUsd = movements
 // for (const acc of accounts) {
 //   acc.owner === "Jessica Davis"? console.log(acc):"";
 // }
+///////////some and every method////////////////////
+console.log(movements.some(mov => mov>1000))
+
+console.log(movements.every(mov => mov > -1000));
