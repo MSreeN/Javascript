@@ -270,3 +270,4 @@ const totalDepositsInUsd = movements
 console.log(movements.some(mov => mov>1000))
 
 console.log(movements.every(mov => mov > -1000));
+console.log("last one");
