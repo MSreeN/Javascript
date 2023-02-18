@@ -241,59 +241,151 @@ const registerAnswer = poll.registerNewAnswer.bind(poll);
 // Hints: Use tools from all lectures in this section so far 😉
 
 // GOOD LUCK 😀
-const dogsJulia = [3, 5, 2, 12, 7]
+const dogsJulia = [3, 5, 2, 12, 7];
 function checkDogs(dogsJulia, dogsKate) {
   const juliaShallow = dogsJulia.slice();
-  juliaShallow.splice(0,1);
-  juliaShallow.splice(-2,2);
-  const dogs = juliaShallow.concat(dogsKate)
-  dogs.forEach(function(value, index){
-    console.log(`Dog number ${index+1} is an ${value<3 ?'puppy': 'adult'} and is ${value} years old`);
-  })
+  juliaShallow.splice(0, 1);
+  juliaShallow.splice(-2, 2);
+  const dogs = juliaShallow.concat(dogsKate);
+  dogs.forEach(function (value, index) {
+    console.log(
+      `Dog number ${index + 1} is an ${
+        value < 3 ? "puppy" : "adult"
+      } and is ${value} years old`
+    );
+  });
 }
 // checkDogs(dogsJulia, [4, 1, 15, 8, 3]);
 
+// Create a function 'calcAverageHumanAge', which accepts an arrays of dog's
+// ages ('ages'), and does the following things in order:
+// 1. Calculate the dog age in human years using the following formula: if the dog is
+// <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old,
+// humanAge = 16 + dogAge * 4
 
-// Create a function 'calcAverageHumanAge', which accepts an arrays of dog's 
-// ages ('ages'), and does the following things in order: 
-// 1. Calculate the dog age in human years using the following formula: if the dog is 
-// <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, 
-// humanAge = 16 + dogAge * 4 
-
-const data1 = [5, 2, 4, 1, 15, 8, 3] 
-const data2 = [16, 6, 10, 5, 6, 1, 4]
-let dogHumanAge = []
-function calcAverageHumanAge(data){
-  dogHumanAge = data.map(age => {
-    if(age<=2) return 2* age
-    else return 16+ age*4;
-  })
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [16, 6, 10, 5, 6, 1, 4];
+let dogHumanAge = [];
+function calcAverageHumanAge(data) {
+  dogHumanAge = data.map((age) => {
+    if (age <= 2) return 2 * age;
+    else return 16 + age * 4;
+  });
   return dogHumanAge;
 }
 // console.log(calcAverageHumanAge(data2))
-// 2. Exclude all dogs that are less than 18 human years old (which is the same as 
-// keeping dogs that are at least 18 years old) 
-dogHumanAge = dogHumanAge.filter((age) => age>17)
+// 2. Exclude all dogs that are less than 18 human years old (which is the same as
+// keeping dogs that are at least 18 years old)
+dogHumanAge = dogHumanAge.filter((age) => age > 17);
 // console.log(dogHumanAge);
-// 3. Calculate the average human age of all adult dogs (you should already know 
-// from other challenges how we calculate averages 😉) 
-let AvgHumanAgeOfDogs = dogHumanAge.reduce(function(acc, cVal){
-  return acc+cVal;
-},0)/dogHumanAge.length
+// 3. Calculate the average human age of all adult dogs (you should already know
+// from other challenges how we calculate averages 😉)
+let AvgHumanAgeOfDogs =
+  dogHumanAge.reduce(function (acc, cVal) {
+    return acc + cVal;
+  }, 0) / dogHumanAge.length;
 // console.log(AvgHumanAgeOfDogs);
-// 4. Run the function for both test datasets 
-// Test data: 
-// Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time 
-// as an arrow function, and using chaining! 
-// Test data: 
-// § Data 1: [5, 2, 4, 1, 15, 8, 3] 
+// 4. Run the function for both test datasets
+// Test data:
+// Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+// as an arrow function, and using chaining!
+// Test data:
+// § Data 1: [5, 2, 4, 1, 15, 8, 3]
 // § Data 2: [16, 6, 10, 5, 6, 1, 4]
-function calcAverageHumanAge(data){
+function calcAverageHumanAge(data) {
   let arrSize;
-  const totDogAges = data.map(age => age<=2?2*age:16+age*4).filter(age => age>17).reduce((acc, cVal,i,arr) => {
-    arrSize  = arr.length;
-    return acc+cVal;
-  },0)
-  return totDogAges/arrSize;
+  const totDogAges = data
+    .map((age) => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter((age) => age > 17)
+    .reduce((acc, cVal, i, arr) => {
+      arrSize = arr.length;
+      return acc + cVal;
+    }, 0);
+  return totDogAges / arrSize;
 }
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+
+////////////////Challange 4///////////////////////////
+// Julia and Kate are still studying dogs, and this time they are studying if dogs are
+// eating too much or too little.
+// Eating too much means the dog's current food portion is larger than the
+// recommended portion, and eating too little is the opposite.
+// Eating an okay amount means the dog's current food portion is within a range 10%
+// above and 10% below the recommended portion (see hint).
+// Your tasks:
+// 1. Loop over the 'dogs' array containing dog objects, and for each dog, calculate
+// the recommended food portion and add it to the object as a new property. Do
+// not create a new array, simply loop over the array. Forumla:
+// recommendedFood = weight ** 0.75 * 28. (The result is in grams of
+// food, and the weight needs to be in kg)
+// 2. Find Sarah's dog and log to the console whether it's eating too much or too
+// little. Hint: Some dogs have multiple owners, so you first need to find Sarah in
+// the owners array, and so this one is a bit tricky (on purpose) 🤓
+// 3. Create an array containing all owners of dogs who eat too much
+// ('ownersEatTooMuch') and an array with all owners of dogs who eat too little
+// ('ownersEatTooLittle').
+// 4. Log a string to the console for each array created in 3., like this: "Matilda and
+// Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat
+// too little!"
+// 5. Log to the console whether there is any dog eating exactly the amount of food
+// that is recommended (just true or false)
+// 6. Log to the console whether there is any dog eating an okay amount of food
+// (just true or false)
+// 7. Create an array containing the dogs that are eating an okay amount of food (try
+// to reuse the condition used in 6.)
+// 8. Create a shallow copy of the 'dogs' array and sort it by recommended food
+// portion in an ascending order (keep in mind that the portions are inside the
+// array's objects 😉)
+// Hints:
+// § Use many different tools to solve these challenges, you can use the summary
+// lecture to choose between them 😉
+// § Being within a range 10% above and below the recommended portion means:
+// current > (recommended * 0.90) && current < (recommended *
+// 1.10). Basically, the current portion should be between 90% and 110% of the
+// recommended portion.
+// Test data:
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+//1.
+dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+// console.log(dogs);
+//2.
+const sara = dogs.find((dog) => dog.owners.includes("Sarah"));
+// console.log(sara);
+// console.log(`Sarah's dog is eating too ${sara.curFood> sara.recFood? "much":"little"}`);
+//3.
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.recFood)
+  .flatMap((owner) => owner.owners);
+// console.log(ownersEatTooMuch);
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.recFood)
+  .flatMap((owner) => owner.owners);
+// console.log(ownersEatTooLittle);
+//4.
+console.log(`${ownersEatTooMuch.join(", ")} dogs eat too much `);
+console.log(`${ownersEatTooLittle.join(", ")} dogs eat too little.`);
+
+//5.
+console.log(dogs.some((dog) => dog.curFood === dog.recFood));
+//6.
+// current > (recommended * 0.90) && current < (recommended *
+// 1.10)
+function checkEatingOkay(dogs){
+  return dogs.some(
+    (dog) => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFoog * 1.1
+  )
+}
+console.log(checkEatingOkay(dogs));
+console.log(dogs);
+
+//7.
+
+//8.
+const dogShallow = dogs.slice().sort((cVal,nVal) => cVal.recFood- nVal.recFood)
+console.log(dogShallow);
