@@ -63,3 +63,37 @@ function arguments(a,b){
   console.log(a,b);
   console.log(arguments.length);
 }
+console.log("-------------------------------");
+//////////////////////////cloning of obj////////////////
+
+
+////////////////////assign ////////////////////
+const original = {
+  a: 1,
+  b: 2,
+  originalFun(){
+    console.log("this is from original function");
+  },
+  innerOriginal: {
+    innerA: 3,
+    innerB: 4
+  }
+}
+
+//using assign method to clone object dosen't actually clone the inner objects, inner objects in cloned object still point to same memory point to where original array inner object is point to 
+const cloneUsingAssign = Object.assign({}, original)
+
+
+cloneUsingAssign.innerOriginal.a = 10;
+console.log(original.innerOriginal.a);
+//below log prints 10 because we've used assign method which doesn't clone inner objects.
+console.log(cloneUsingAssign.innerOriginal.a);
+
+function change(){
+  console.log("newly changed function");
+}
+
+cloneUsingAssign.originalFun = change;
+
+original.originalFun();
+cloneUsingAssign.originalFun();
