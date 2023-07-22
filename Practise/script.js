@@ -97,3 +97,14 @@ cloneUsingAssign.originalFun = change;
 
 original.originalFun();
 cloneUsingAssign.originalFun();
+ console.log("---------------------------------");
+
+ ////////////////////////json.parse(json.stringify)
+
+
+ //////can't access methods of object using parse because it doesn't copy methods.
+const cloneUsingParse = JSON.parse(JSON.stringify(original))
+
+// cloneUsingParse.originalFun = change;
+
+cloneUsingParse.originalFun();
