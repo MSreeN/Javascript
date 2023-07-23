@@ -1,4 +1,3 @@
-let a = 10;
 
 
 /////////making this keyword inside a child function of function point to object event if it being called normally. 
@@ -107,4 +106,40 @@ const cloneUsingParse = JSON.parse(JSON.stringify(original))
 
 // cloneUsingParse.originalFun = change;
 
-cloneUsingParse.originalFun();
+// cloneUsingParse.originalFun();
+console.log("-----------------------------------");
+
+//////////////////////////////using structuredClone
+
+//can't perform clone if original object has methods
+// const cloneUsingStructured = structuredClone(original);
+
+// console.log(cloneUsingParse);
+
+let a = 10;
+let b = 12;
+
+[a,b] = [b,a]
+console.log(a,b);
+ 
+
+({a, b}= original);
+
+console.log(a, b);
+
+const arra = []
+
+const objDes = {
+  c:1,
+  d:4
+}
+let c,d
+{c:arra[0], d:arra[1]} = objDes;
+
+console.log(arra);
+
+///splitting string using ...spread operator
+const st = "khyathi";
+const nam = [...st];
+console.log(nam);
+
