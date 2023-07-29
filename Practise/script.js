@@ -134,7 +134,7 @@ const objDes = {
   d:4
 }
 let c,d
-{c:arra[0], d:arra[1]} = objDes;
+({c:arra[0], d:arra[1]} = objDes);
 
 console.log(arra);
 
@@ -143,3 +143,72 @@ const st = "khyathi";
 const nam = [...st];
 console.log(nam);
 
+console.log("--------------------------------");
+
+///////////////////&& || ?? operators
+
+console.log(" " || null || null || undefined);
+
+console.log(null && 6 && undefined);
+
+console.log( 0 ?? 10 ?? null);
+let flag = false;
+console.log(flag || "hello");
+
+
+console.log("----------------------------------------");
+
+///////////////array methods////////////////
+const array = [5,2, 3,4, undefined];
+for(const ele of array.entries()){
+  console.log(ele);
+}
+
+const optional= {
+  has: "has"
+}
+
+////////slice
+const ar = array.splice(1,0,100);
+console.log(array);
+// console.log(array.splice(-1));
+// console.log(array);
+console.log(array.join(" "));
+
+/////filter
+
+const filtered = array.filter( (val,ind, ar) => val)
+console.log(filtered);
+
+
+/////reduce
+
+const greater = array.reduce((acc, cVal) => acc < cVal ? cVal : acc)
+console.log(greater);
+
+const greater2 = array.filter(ele => ele).reduce((acc, cVal, index) => {
+  console.log(acc + "at index "+index);
+  return cVal+acc;
+})
+console.log(greater2)
+console.log(array);
+
+const flat = [1,2,[3,4,[5,6]]]
+const flatarr = flat.map((v,i) =>{
+  let val = v
+  console.log(`${val} at index ${i}`);
+})
+
+const add = flat.reduce((acc, cVal)=>{
+  return acc+cVal;
+},0)
+console.log(add);
+
+////array sort method
+
+const unsorted = [3,52,62,6,3,15,6];
+const sorted = unsorted.sort((a, b)=>{
+  return a-b;
+})
+
+console.log(sorted);
