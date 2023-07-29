@@ -212,3 +212,28 @@ const sorted = unsorted.sort((a, b)=>{
 })
 
 console.log(sorted);
+
+console.log("-----------------------------");
+
+const obje = {
+  a: 10,
+  b: 20
+}
+
+for(i of Object.values(unsorted)){
+  console.log(i);
+}
+
+///////////////map
+const map = new Map();
+map.set(document.querySelector(".sample"), 10)
+map.set("a", 10)
+console.log(map);
+console.log(map.get(document.querySelector(".sample")));
+
+for(const [a,b] of map.entries()){
+  console.log(a,b);
+}
+
+const mapKeys = map.keys()
+console.log(mapKeys);
