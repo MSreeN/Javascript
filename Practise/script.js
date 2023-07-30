@@ -1,94 +1,90 @@
-
-
-/////////making this keyword inside a child function of function point to object event if it being called normally. 
+/////////making this keyword inside a child function of function point to object event if it being called normally.
 const obj = {
   nameObj: "sample",
-  Sample(){
+  Sample() {
     // const inside = () =>{
     //   console.log(this);
     // }
     console.log(this);
 
     //unlike arrow function this normal function doesn't lexically point to parent, this inside this depends on the context that function being called that's why we need to bind this inside below fun to sample
-    function inside(){
+    function inside() {
       console.log(this);
     }
     const pointToObj = inside.bind(this);
-    pointToObj()
+    pointToObj();
 
     ///this inside arrow function points lexically to its parent function which is here sample and this inside sample points to the obj.
     const innerFunArrow = () => {
       console.log(this);
-    }
+    };
 
     console.log("this from innerFunArrow", innerFunArrow());
 
-    const insideFunExpression = function(){
+    const insideFunExpression = function () {
       console.log("from function expression", this);
-    }
-    const insideFunExpressionBind = insideFunExpression.bind(this)
-    //in this method call this will point to the window obj 
+    };
+    const insideFunExpressionBind = insideFunExpression.bind(this);
+    //in this method call this will point to the window obj
     insideFunExpression();
-    insideFunExpressionBind()
+    insideFunExpressionBind();
   },
-  innerArrow: ()=>{
-    console.log("inner arrow",this);
-  }
-}
+  innerArrow: () => {
+    console.log("inner arrow", this);
+  },
+};
 
 ////if these function are normally called then this points to window
-const arrow = () =>{
+const arrow = () => {
+  console.log(this);
+};
+
+function normal() {
   console.log(this);
 }
 
-function normal(){
-  console.log(this);
-}
+arrow();
+normal();
 
-arrow()
-normal()
+obj.Sample();
+obj.innerArrow();
 
-obj.Sample()
-obj.innerArrow()
-
-const arr = [1,2,3,4,5]
-arr.splice(1,1)
-arr.splice(1,0,6);
+const arr = [1, 2, 3, 4, 5];
+arr.splice(1, 1);
+arr.splice(1, 0, 6);
 console.log(arr);
 
-arguments(1,2,3)
+arguments(1, 2, 3);
 
-function arguments(a,b){
-  console.log(a,b);
+function arguments(a, b) {
+  console.log(a, b);
   console.log(arguments.length);
 }
 console.log("-------------------------------");
 //////////////////////////cloning of obj////////////////
 
-
 ////////////////////assign ////////////////////
 const original = {
   a: 1,
   b: 2,
-  originalFun(){
+  originalFun() {
     console.log("this is from original function");
   },
   innerOriginal: {
     innerA: 3,
-    innerB: 4
-  }
-}
+    innerB: 4,
+  },
+};
 
-//using assign method to clone object dosen't actually clone the inner objects, inner objects in cloned object still point to same memory point to where original array inner object is point to 
-const cloneUsingAssign = Object.assign({}, original)
-
+//using assign method to clone object dosen't actually clone the inner objects, inner objects in cloned object still point to same memory point to where original array inner object is point to
+const cloneUsingAssign = Object.assign({}, original);
 
 cloneUsingAssign.innerOriginal.a = 10;
 console.log(original.innerOriginal.a);
 //below log prints 10 because we've used assign method which doesn't clone inner objects.
 console.log(cloneUsingAssign.innerOriginal.a);
 
-function change(){
+function change() {
   console.log("newly changed function");
 }
 
@@ -96,13 +92,12 @@ cloneUsingAssign.originalFun = change;
 
 original.originalFun();
 cloneUsingAssign.originalFun();
- console.log("---------------------------------");
+console.log("---------------------------------");
 
- ////////////////////////json.parse(json.stringify)
+////////////////////////json.parse(json.stringify)
 
-
- //////can't access methods of object using parse because it doesn't copy methods.
-const cloneUsingParse = JSON.parse(JSON.stringify(original))
+//////can't access methods of object using parse because it doesn't copy methods.
+const cloneUsingParse = JSON.parse(JSON.stringify(original));
 
 // cloneUsingParse.originalFun = change;
 
@@ -119,22 +114,21 @@ console.log("-----------------------------------");
 let a = 10;
 let b = 12;
 
-[a,b] = [b,a]
-console.log(a,b);
- 
+[a, b] = [b, a];
+console.log(a, b);
 
-({a, b}= original);
+({ a, b } = original);
 
 console.log(a, b);
 
-const arra = []
+const arra = [];
 
 const objDes = {
-  c:1,
-  d:4
-}
-let c,d
-({c:arra[0], d:arra[1]} = objDes);
+  c: 1,
+  d: 4,
+};
+let c, d;
+({ c: arra[0], d: arra[1] } = objDes);
 
 console.log(arra);
 
@@ -151,25 +145,24 @@ console.log(" " || null || null || undefined);
 
 console.log(null && 6 && undefined);
 
-console.log( 0 ?? 10 ?? null);
+console.log(0 ?? 10 ?? null);
 let flag = false;
 console.log(flag || "hello");
-
 
 console.log("----------------------------------------");
 
 ///////////////array methods////////////////
-const array = [5,2, 3,4, undefined];
-for(const ele of array.entries()){
+const array = [5, 2, 3, 4, undefined];
+for (const ele of array.entries()) {
   console.log(ele);
 }
 
-const optional= {
-  has: "has"
-}
+const optional = {
+  has: "has",
+};
 
 ////////slice
-const ar = array.splice(1,0,100);
+const ar = array.splice(1, 0, 100);
 console.log(array);
 // console.log(array.splice(-1));
 // console.log(array);
@@ -177,39 +170,40 @@ console.log(array.join(" "));
 
 /////filter
 
-const filtered = array.filter( (val,ind, ar) => val)
+const filtered = array.filter((val, ind, ar) => val);
 console.log(filtered);
-
 
 /////reduce
 
-const greater = array.reduce((acc, cVal) => acc < cVal ? cVal : acc)
+const greater = array.reduce((acc, cVal) => (acc < cVal ? cVal : acc));
 console.log(greater);
 
-const greater2 = array.filter(ele => ele).reduce((acc, cVal, index) => {
-  console.log(acc + "at index "+index);
-  return cVal+acc;
-})
-console.log(greater2)
+const greater2 = array
+  .filter((ele) => ele)
+  .reduce((acc, cVal, index) => {
+    console.log(acc + "at index " + index);
+    return cVal + acc;
+  });
+console.log(greater2);
 console.log(array);
 
-const flat = [1,2,[3,4,[5,6]]]
-const flatarr = flat.map((v,i) =>{
-  let val = v
+const flat = [1, 2, [3, 4, [5, 6]]];
+const flatarr = flat.map((v, i) => {
+  let val = v;
   console.log(`${val} at index ${i}`);
-})
+});
 
-const add = flat.reduce((acc, cVal)=>{
-  return acc+cVal;
-},0)
+const add = flat.reduce((acc, cVal) => {
+  return acc + cVal;
+}, 0);
 console.log(add);
 
 ////array sort method
 
-const unsorted = [3,52,62,6,3,15,6];
-const sorted = unsorted.sort((a, b)=>{
-  return a-b;
-})
+const unsorted = [3, 52, 62, 6, 3, 15, 6];
+const sorted = unsorted.sort((a, b) => {
+  return a - b;
+});
 
 console.log(sorted);
 
@@ -217,23 +211,47 @@ console.log("-----------------------------");
 
 const obje = {
   a: 10,
-  b: 20
-}
+  b: 20,
+};
 
-for(i of Object.values(unsorted)){
+for (i of Object.values(unsorted)) {
   console.log(i);
 }
 
 ///////////////map
 const map = new Map();
-map.set(document.querySelector(".sample"), 10)
-map.set("a", 10)
+map.set(document.querySelector(".sample"), 10);
+map.set("a", 10);
 console.log(map);
 console.log(map.get(document.querySelector(".sample")));
 
-for(const [a,b] of map.entries()){
-  console.log(a,b);
+for (const [a, b] of map.entries()) {
+  console.log(a, b);
 }
 
-const mapKeys = map.keys()
+const mapKeys = map.keys();
 console.log(mapKeys);
+
+/////////Numbers
+
+const num = "12q77wer";
+const filteredVal = [...num].filter( val => isFinite(val)).join("");
+console.log(filteredVal);
+
+///set timeout
+function x(){
+  let timeout;
+  function close(j){
+    timeout = setTimeout(()=> {
+      console.log(j++);
+    }, 1000*j)
+  }
+  setTimeout(() => {
+    console.log(timeout);
+  }, 7000);
+  
+  
+  for(var j = 1; j<=5; j++) close(j);
+}
+
+x()
