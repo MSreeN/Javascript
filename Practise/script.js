@@ -255,3 +255,16 @@ function x(){
 }
 
 x()
+
+//////////set interval
+
+function interval(){
+  let j = 1;
+  const interval = setInterval(() => {
+    console.log(j++);
+    if(j>9) clearInterval(interval)
+  }, 1000*j);
+  // if(j>9) clearInterval(interval)
+}
+
+interval()
