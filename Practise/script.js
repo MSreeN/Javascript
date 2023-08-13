@@ -267,4 +267,10 @@ function interval(){
   // if(j>9) clearInterval(interval)
 }
 
-interval()
+// interval()
+
+
+////////////////Strings///////////////////
+
+const str = "sree";
+console.log(str.indexOf("e",3));
