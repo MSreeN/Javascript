@@ -274,3 +274,7 @@ function interval(){
 
 const str = "sree";
 console.log(str.indexOf("e",3));
+
+const nums = [0,2,1,5]
+const ab = nums.splice(2,0,100);
+console.log(nums);
