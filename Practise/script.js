@@ -280,7 +280,7 @@ const ab = nums.splice(2,0,100);
 console.log(nums);
 
 
-///////////////////apply, bind, call 
+///////////////////apply, bind, call ////////////////////////////////////////
 
 const objBind = {
   name: "Sree",  
@@ -295,7 +295,15 @@ const objSec = {
   age: 21
 }
 
-const callObj = objBind.print.call(objSec);
-const applyObj = objBind.print.apply(objSec)
-const bindObj = objBind.print.bind(objSec)
-bindObj()
+// const callObj = objBind.print.call(objSec);
+// const applyObj = objBind.print.apply(objSec)
+// const bindObj = objBind.print.bind(objSec)
+// bindObj()
+
+const addObj = {
+    addition(a,b){
+      console.log(`${a+b}`);
+    }
+}
+const addToFive = addObj.addition.bind(null, 5);
+addToFive(10);
