@@ -254,7 +254,7 @@ function x(){
   for(var j = 1; j<=5; j++) close(j);
 }
 
-x()
+// x()
 
 //////////set interval
 
@@ -278,3 +278,24 @@ console.log(str.indexOf("e",3));
 const nums = [0,2,1,5]
 const ab = nums.splice(2,0,100);
 console.log(nums);
+
+
+///////////////////apply, bind, call 
+
+const objBind = {
+  name: "Sree",  
+  age: 20,
+  print(){
+    console.log(`${this.name} and ${this.age}`);
+  }
+}
+
+const objSec = {
+  name: "second object",
+  age: 21
+}
+
+const callObj = objBind.print.call(objSec);
+const applyObj = objBind.print.apply(objSec)
+const bindObj = objBind.print.bind(objSec)
+bindObj()
