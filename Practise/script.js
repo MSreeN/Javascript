@@ -327,3 +327,6 @@ let min = 5;
 
 const randNum = (Math.random() * (max -min))+min;
 console.log(Math.round(randNum));
+
+let fl = 2.7;
+console.log(fl.toFixed(2));
