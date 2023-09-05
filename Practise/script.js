@@ -330,3 +330,19 @@ console.log(Math.round(randNum));
 
 let fl = 2.7;
 console.log(fl.toFixed(2));
+
+//////////////////////////////Dates///////////////////
+
+const date = new Date();
+// console.log(+date);
+
+////no.of days between two days
+
+const date1 = new Date();
+const date2 = new Date("Sep 10 2023")
+
+const remainingDays = +date2 - +date1;
+console.log(Math.ceil(remainingDays/(1000 * 60 * 60 * 24)));
+
+// console.log(date2);
+
