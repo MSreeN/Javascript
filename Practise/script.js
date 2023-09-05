@@ -320,3 +320,10 @@ function outer(){
 
 // outer();
 
+////////////////////////////Numbers///////////
+////////////random number between two numbers
+let max = 10;
+let min = 5;
+
+const randNum = (Math.random() * (max -min))+min;
+console.log(Math.round(randNum));
