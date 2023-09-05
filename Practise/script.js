@@ -307,3 +307,16 @@ const addObj = {
 }
 const addToFive = addObj.addition.bind(null, 5);
 addToFive(10);
+
+
+///////////////////////////////////Closure//////////////////////////////
+
+function outer(){
+  let a = 10;
+  setInterval(function(){
+    console.log(a++);
+  },1000)
+}
+
+// outer();
+
