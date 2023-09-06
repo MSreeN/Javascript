@@ -346,3 +346,6 @@ console.log(Math.ceil(remainingDays/(1000 * 60 * 60 * 24)));
 
 // console.log(date2);
 
+const userLoc = navigator.language;
+// const userLoc = navigator.geolocation.getCurrentPosition();
+console.log(userLoc);
