@@ -343,9 +343,18 @@ const date2 = new Date("Sep 10 2023")
 
 const remainingDays = +date2 - +date1;
 console.log(Math.ceil(remainingDays/(1000 * 60 * 60 * 24)));
-
+ 
 // console.log(date2);
 
 const userLoc = navigator.language;
 // const userLoc = navigator.geolocation.getCurrentPosition();
 console.log(userLoc);
+
+///////////////////////////////////////Dom
+document.documentElement.style.setProperty("backgroundColor", "red");
+
+/////////////////coordinates
+document.querySelector('.button').addEventListener('click', function(e){
+  console.log(e.target.getBoundingClientRect());
+  console.log(window.scrollY)
+})

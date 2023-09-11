@@ -7,30 +7,70 @@
   <title>Document</title>
   <script defer src="script.js"></script>
   <style>
-    body{
+    /* body{
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+    } */
+    .button{
+      display: block;
     }
     .sample{
+      /* width: 50%; */
+      height: inherit;
+      display: grid;
+      justify-content: center;
       /* background-color: pink; */
       font-size: 50px;
-      display: inline-block;
-      border-left: 5px solid red;
+      
     }
     .inside{
+      /* width: 50%; */
       padding-left: 50px;
       margin: 20px;
+      border-left: 5px solid red;
+    }
+
+    .parent{
+      box-sizing: border-box;
+      width: 500px;
+      height: 300px;
+      border: 1px solid black;
+    }
+
+    .inner1{
+      width: 400px;
+      height: 70px;
+      border: 1px solid black;
+      margin: 7px;
+    }
+
+    .inner-inner1{
+      border: 1px solid black;
+    }
+
+    .inner2{
+      border: 1px solid black;
     }
   </style>
 </head>
 <body>
+  <button class="button">Click</button>
 
   <div class="sample">
     <div class="inside">
       this is sample text
     </div>
+  </div>
+
+  <div class="parent">
+    <p>parent div</p>
+    <div class="inner1">
+      <p>inner1</p>
+      <div class="inner-inner1">inner-inner1</div>
+    </div>
+    <div class="inner2">inner2</div>
   </div>
   
 </body>
