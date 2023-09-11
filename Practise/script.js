@@ -358,3 +358,19 @@ document.querySelector('.button').addEventListener('click', function(e){
   console.log(e.target.getBoundingClientRect());
   console.log(window.scrollY)
 })
+
+
+///////////////////event bubbling
+
+document.querySelector('.parent').addEventListener('click', function(e){
+  console.log(e.currentTarget);
+})
+
+document.querySelector(".inner1").addEventListener('click', function(e){
+  console.log(e.currentTarget);
+  e.currentTarget.style.backgroundColor = "red";
+})
+document.querySelector(".inner-inner1").addEventListener('click', function(e){
+  console.log(e.currentTarget);
+  e.currentTarget.style.backgroundColor = "green";
+})
