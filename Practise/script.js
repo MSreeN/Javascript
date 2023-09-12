@@ -374,3 +374,16 @@ document.querySelector(".inner-inner1").addEventListener('click', function(e){
   console.log(e.currentTarget);
   e.currentTarget.style.backgroundColor = "green";
 })
+
+/////////////dom traversing
+
+let parent = document.querySelector(".parent");
+//gets the children of inner1 which is child of parent
+console.log(parent.querySelectorAll('.inner1'));
+console.log(parent.children);
+console.log(parent.querySelector(".inner1").nextElementSibling);
+parent.lastElementChild.style.backgroundColor = "red";
+
+const innerInner1 = document.querySelector(".inner-inner1");
+console.log(innerInner1.closest(".parent"));
+
