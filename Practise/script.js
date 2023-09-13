@@ -387,3 +387,21 @@ parent.lastElementChild.style.backgroundColor = "red";
 const innerInner1 = document.querySelector(".inner-inner1");
 console.log(innerInner1.closest(".parent"));
 
+////////////////////////////Oops
+
+const Person = function(firstName){
+  this.firstName = firstName;
+  console.log(this);
+}
+
+const p1 = new Person("sree");
+console.log(p1);
+
+console.log(Person.prototype.__proto__ === Object.prototype);
+
+console.log(Array.__proto__ == Function.prototype);
+console.dir(Array.__proto__);
+console.log(Person.__proto__ == Object.prototype)
+console.log(Person.__proto__ == Function.prototype);
+console.log(Object.prototype == Function.prototype);
+  console.log(Function.__proto__ == Object.prototype)
